@@ -1,0 +1,55 @@
+---
+title: "California Wildfires Visualization"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+
+Cal_Wildfires_Cleaned_raw <- read_csv("Cal_Wildfires_Cleaned.csv")
+
+Cal_Wildfires_Cleaned <- Cal_Wildfires_Cleaned_raw %>%
+  rename(
+    Damage = `* Damage`,
+    Incident_Name = `* Incident Name`,
+    Assessed_Improved_Value = `Assessed Improved Value (parcel)`
+  )
+
+glimpse(Cal_Wildfires_Cleaned)
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+df_cluster <- Cal_Wildfires_Cleaned %>%
+  select(Latitude, Longitude, Assessed_Improved_Value ) %>%
+  drop_na()
+
+df_scaled <- scale(df_cluster)
+
+set.seed(123)
+km <- kmeans(df_scaled, centers = 3, nstart = 20)
+
+df_cluster$Cluster <- as.factor(km$cluster)
+
+levels(df_cluster$Cluster) <- c(
+  "Southern & Central California",
+  "Northern Interior California",
+  "Northern Coastal & Foothill Region")
+
+ggplot(df_cluster, aes(x = Longitude, y = Latitude)) +
+  geom_point(aes( color = Cluster, size = Assessed_Improved_Value )) +
+  scale_size_continuous(range = c(1, 6)) +
+  
+  labs(
+    title = "K-Means Clustering of California Wildfires (2015–2024)",
+    subtitle = "Clusters based on Geography and Financial Loss",
+    x = "Longitude",
+    y = "Latitude",
+    color = "Clustered Region",
+    size = "Assessed Improved Value") +
+  theme_minimal()
+```
