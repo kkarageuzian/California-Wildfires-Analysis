@@ -10,3 +10,15 @@ Central regions experience most of the larger-loss events. This alludes to the f
 properties/cause more severe damage. The Northern Interior region shows moderate losses, while the coastal and foothill region has smaller, less frequent high-value 
 losses. Overall, the visualization helps highlight how wildfire impact varies by location and shows that the southern part of the state faces the greatest financial 
 risk.
+
+
+### California Wildfires: Clustering & Financial Impact Analysis
+
+## Motivation
+For this project, I wanted to explore how California wildfires vary across different regions of the state and whether certain areas experience more severe financial losses than others. Wildfires have become increasingly destructive in recent years, and I was interested in understanding the geographic distribution of high-damage incidents. This led me to ask, are there natural clusters in where wildfires occur, and which regions of California face the greatest financial risk?
+
+## Data Source
+The data for this project comes from the CAL FIRE Post-Fire Master Dataset, which records detailed information about wildfire incidents across California. This dataset includes key variables such as location (latitude and longitude), structure category, damage level, and Assessed Improved Value (parcel), which estimates the dollar value of damaged structures. The dataset was originally downloaded from the CAL FIRE database and then imported into R for cleaning and analysis.
+
+## Processing Steps
+To prepare the dataset for clustering and visualization, I performed several cleaning and transformation steps in Excel and R. 
