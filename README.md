@@ -1,17 +1,3 @@
-To create my visualization for my California Wildfire Analysis, I used a k-means clustering on wildfire latitude, longitude, and assessed property values 
-(Assessed Improved Value (parcel)). The fires are separated into three geographic regions across California. The Southern and Central California region  
-cluster is colored in red and located in the lower part of the state, the Northern Interior region cluster is colored in green and located in the central 
-and upper inland area, and the Northern Coastal and Foothill Region is colored in blue and located along the coast. The clusters are formed based on the shape 
-of California where the wildfires incidents tend to occur. There are also a few blue points that appear farther south, which is normal because k-means clustering 
-groups fires based on all variables, so some individual fires match the coastal cluster even if they occur geographically lower on the map.
-
-By looking at the point sizes, which represent the Assessed Improved Value (the dollar value of structures that were damaged), we can see that the Southern and 
-Central regions experience most of the larger-loss events. This alludes to the fact that wildfires in this part of California tends to affect high-value 
-properties/cause more severe damage. The Northern Interior region shows moderate losses, while the coastal and foothill region has smaller, less frequent high-value 
-losses. Overall, the visualization helps highlight how wildfire impact varies by location and shows that the southern part of the state faces the greatest financial 
-risk.
-
-
 ### California Wildfires: Clustering & Financial Impact Analysis
 
 ## Motivation
@@ -21,4 +7,10 @@ For this project, I wanted to explore how California wildfires vary across diffe
 The data for this project comes from the CAL FIRE Post-Fire Master Dataset, which records detailed information about wildfire incidents across California. This dataset includes key variables such as location (latitude and longitude), structure category, damage level, and Assessed Improved Value (parcel), which estimates the dollar value of damaged structures. The dataset was originally downloaded from the CAL FIRE database and then imported into R for cleaning and analysis.
 
 ## Processing Steps
-To prepare the dataset for clustering and visualization, I performed several cleaning and transformation steps in Excel and R. First, I removed columns in Excel that were not relevant to my analysis, like fields that did not relate to location or property value. Then, I imported the cleaned dataset into R. After putting my dataset in R, I selected the key variables needed for clustering which were the Latitude, Longitude, and Assessed Improved Value. I removed rows with missing values using drop_na() to ensure the clustering algorithm only used complete data. I renamed certain columns for clarity and easier use in R like "Damage", "Incident Name", and "Assessed Improved Value to make them easier to use. After that, I standardized the variables using scale() so that the k-means clustering would treat all features equally. Finally, I was able to have a clean 
+To prepare the dataset for clustering and visualization, I performed several cleaning and transformation steps in Excel and R. First, I removed columns in Excel that were not relevant to my analysis, like fields that did not relate to location or property value. Then, I imported the cleaned dataset into R. After putting my dataset in R, I selected the key variables needed for clustering which were the Latitude, Longitude, and Assessed Improved Value. I removed rows with missing values using drop_na() to ensure the clustering algorithm only used complete data. I renamed certain columns for clarity and easier use in R like "Damage", "Incident Name", and "Assessed Improved Value to make them easier to use. After that, I standardized the variables using scale() so that the k-means clustering would treat all features equally. Finally, these processing steps ensured that the clustering performed correctly and the visualization was consistent and complete. 
+
+## Visualization
+The main visualization for this project is shown in the plot below. The visualization presents the results of k-means clustering forming three geographic wildfire regions across California. Southern and Central California is colored in red, Northern Interior California is colored in green, Northern Coastal & Foothill Region is colored in blue. Point size represents the Assessed Improved Value (estimated dollar value of structures that were damaged). Larger points indicate fires that caused more costly damage. A few blue points appear farther south, which is normal because k-means groups fires by similarity across all variables, so some incidents align with the coastal cluster even when they occur geographically lower on the map.
+
+## Analysis
+The visualization shows that wildfires naturally cluster into three regions across California. The Southern & Central California cluster contains many of the largest-loss events, as indicated by the larger point sizes. This suggests that wildfires in this region tend to affect higher-value properties or cause more severe damage. The Northern Interior region displays moderate losses, while the Northern Coastal and Foothill region shows smaller and less frequent high-loss fires. Overall, this analysis highlights how wildfire impact varies by location and suggests that the southern portion of the state faces the greatest financial risk. Clustering helps reveal these geographic and financial patterns, offering insight into how wildfire severity relates to regional development.
